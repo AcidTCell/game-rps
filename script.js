@@ -1,12 +1,6 @@
-let computerSelection = '';
-let userSelection = '';
-
-function getUserChoice(){
-    let playerInput = prompt('Choose: ');
-    let playerSelection = playerInput.toLowerCase();
-    return playerSelection;
-}
-
+let btnRock = document.querySelector('#rockselection');
+let btnPaper = document.querySelector('#paperselection');
+let btnScissor = document.querySelector('#scissorselection');
 
 
 function getComputerChoice(){
@@ -23,8 +17,6 @@ function getComputerChoice(){
     }
 }
 
-
-
 function playRound(playerSelection, computerSelection){
     if (playerSelection === 'rock' && computerSelection === 'scissors'){
         return 'You Win! Rock beats Scissors';
@@ -32,7 +24,7 @@ function playRound(playerSelection, computerSelection){
     else if (playerSelection === 'paper' && computerSelection === 'rock'){
         return 'You Win! Paper beats Rock'
     }
-    else if (playerSelection === 'scissor' && computerSelection === 'paper'){
+    else if (playerSelection === 'scissors' && computerSelection === 'paper'){
         return 'You Win! Scissor beats Paper';
     }
     else if (playerSelection === computerSelection){
@@ -43,42 +35,20 @@ function playRound(playerSelection, computerSelection){
     }
 }
 
+btnRock.addEventListener('click', function () {
+    let computerChoice = getComputerChoice();
+    console.log(playRound('rock', computerChoice));
+  });
+
+  btnPaper.addEventListener('click', function () {
+    let computerChoice = getComputerChoice();
+    console.log(playRound('paper', computerChoice));
+  });
+
+  btnScissor.addEventListener('click', function () {
+    let computerChoice = getComputerChoice();
+    console.log(playRound('scissors', computerChoice));
+  });
 
 
-function game(){
-    let counter = 0;
-    let playerPoint = 0;
-    let computerPoint = 0;
-    while (counter < 5){
-        computerSelection = getComputerChoice();
-        playerSelection = getUserChoice();
-        console.log('User: '+ playerSelection);
-        console.log('Computer: '+ computerSelection);
-        console.log(playRound(playerSelection, computerSelection));
-        result = playRound(playerSelection, computerSelection);
-        if (result.includes('Win')){
-            playerPoint += 1;
-            counter += 1;
-        }
-        else if (result.includes('Lose')){
-            computerPoint += 1;
-            counter += 1;
-        }
-        else if (result.includes('Draw')){
-            counter += 1;
-        }
-      console.log(playerPoint);
-      console.log(computerPoint);  
-    }
-    if (playerPoint > computerPoint){
-        return 'You are the overall CHAMPION!'
-    }
-    else if (playerPoint === computerPoint){
-        return 'It is a fucking DRAW'
-    }
-    else {
-        return 'You Lost, LOSER!'
-    }
-}
 
-console.log(game());
